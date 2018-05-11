@@ -20,11 +20,7 @@ class YamlParser:
             except yaml.YAMLError as exc:
                 print(exc)
                 return
-        infile.close()
         foo = yaml_array.get("foo")
-        dictionary = collections.OrderedDict()
-        for i in range(len(foo)):
-            dictionary[foo[i]] = i + 1
+        dictionary = collections.OrderedDict([(i, foo.index(i) + 1) for i in foo])
         with open(output_filename, 'w') as outfile:
             json.dump(json.dumps(dictionary), outfile)
-        outfile.close()
