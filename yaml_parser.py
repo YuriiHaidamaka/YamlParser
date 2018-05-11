@@ -3,12 +3,15 @@ import json
 
 import yaml
 
+from utils import timer
+
 
 class YamlParser:
 
     def __init__(self, filename):
         self.filename = filename
 
+    @timer("save json")
     def parse_to_json(self, output_filename):
         """
         Create the dictionary from a yaml array and write it to a file.
