@@ -1,3 +1,4 @@
+import collections
 import json
 
 import yaml
@@ -21,7 +22,9 @@ class YamlParser:
                 return
         infile.close()
         foo = yaml_array.get("foo")
-        dictionary = {foo[i]: 1 + i for i in range(len(foo))}
+        dictionary = collections.OrderedDict()
+        for i in range(len(foo)):
+            dictionary[foo[i]] = i + 1
         with open(output_filename, 'w') as outfile:
             json.dump(json.dumps(dictionary), outfile)
         outfile.close()
