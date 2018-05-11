@@ -21,6 +21,6 @@ class YamlParser:
                 print(exc)
                 return
         foo = yaml_array.get("foo")
-        dictionary = collections.OrderedDict([(i, foo.index(i) + 1) for i in foo])
+        dictionary = collections.OrderedDict([(j, i + 1) for i, j in enumerate(foo)])
         with open(output_filename, 'w') as outfile:
-            json.dump(json.dumps(dictionary), outfile)
+            json.dump(dictionary, outfile)
